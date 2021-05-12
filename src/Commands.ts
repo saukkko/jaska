@@ -5,17 +5,26 @@ export class Commands {
   /**
    * TODO:
    * 1. Make this class prettier
-   *    - Make each command to their own class methods
    *    - tidy up the code
    * 2. Add more commands
    * 3. Add more useful commands
    */
-  public init(msg: Message): Promise<Message> | undefined {
+
+  public init(msg: Message): void {
+    this.test(msg);
+    this.getRealization(msg);
+    this.findRealizations(msg);
+  }
+
+  private test(msg: Message): Promise<Message> | undefined {
     if (msg.content === "?test") {
       return msg.reply("Toimii!");
     }
+    return;
+  }
 
-    if (msg.content.startsWith("?toteutus")) {
+  private getRealization(msg: Message): Promise<Message> | undefined {
+    if (msg.content.startsWith("?kurssi")) {
       const url = "https://lukkarit.laurea.fi/rest/realization/";
       let course_code = "";
       course_code = msg.content.split(" ")[1];
@@ -23,14 +32,24 @@ export class Commands {
         course_code = course_code.toUpperCase();
         fetch(url + course_code)
           .then((res) => res.json())
+          .catch((err) => {
+            console.error(err);
+            return msg.reply("Error");
+          })
           .then((data: Realization) => {
-            console.log(data);
-
             return msg.reply(this.trimRealization(data));
+          })
+          .catch((err) => {
+            console.error(err);
+            return msg.reply("Error");
           });
       }
     }
-    if (msg.content.startsWith("?toteutukset")) {
+    return;
+  }
+
+  private findRealizations(msg: Message): Promise<Message> | undefined {
+    if (msg.content.startsWith("?hae")) {
       const url = "https://lukkarit.laurea.fi/rest/realizations/";
       const method = "POST";
       let course_code = "";
@@ -48,17 +67,28 @@ export class Commands {
           }),
         })
           .then((res) => res.json())
+          .catch((err) => {
+            console.error(err);
+            return msg.reply("Error");
+          })
           .then((data: Realizations) => {
-            console.log(data);
-            this.trimSearchResults(data);
+            return msg.reply(this.trimSearchResults(data));
+          })
+          .catch((err) => {
+            console.error(err);
+            return msg.reply("Error");
           });
       }
     }
+    return;
   }
-  private trimSearchResults(obj: Realizations): void {
-    obj.data.map((o) => console.log(o));
-    //const trimmed = ``;
-    //return trimmed;
+
+  private trimSearchResults(obj: Realizations): string {
+    let trimmed = ``;
+    obj.data.map((d, i) => {
+      trimmed += `\n${i + 1}: ${d.code}, ${d.name}, ${d.office}`;
+    });
+    return trimmed;
   }
 
   private trimRealization(obj: Realization): string {
@@ -72,6 +102,7 @@ type Realizations = {
     {
       name: string;
       code: string;
+      office: string;
     }
   ];
 };

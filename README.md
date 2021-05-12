@@ -12,8 +12,10 @@
 
 ## Usage
 
-1. `npm run build`
-2. `npm start` (or `npm start -- --debug` to enable debug messages)
+1. Clone this repo
+2. `npm run build`
+3. `echo -n TOKEN=\"my_secret_token\" > .env && chmod 600 .env`
+4. `npm start` (or `npm start -- --debug` to enable debug messages)
 
 ## Contributing
 
