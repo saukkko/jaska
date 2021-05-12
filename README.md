@@ -4,15 +4,16 @@
 
 - Give the bot a name!
 - This readme.
-- Everything.
+- Make it use slash commands: https://discord.com/developers/docs/interactions/slash-commands
 
 ## Installation
 
-xxx
+`npm install`
 
 ## Usage
 
-xxx
+1. `npm run build`
+2. `npm start` (or `npm start -- --debug` to enable debug messages)
 
 ## Contributing
 
@@ -20,4 +21,5 @@ xxx
 
 ## Changelog
 
-0.1.0: xxx
+0.2.0: xxx
+0.1.0: Initial version.

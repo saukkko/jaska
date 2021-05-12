@@ -1,6 +1,0 @@
-{
-  "apiKey": "please_use_dotenv_and_access_with_process.env.VARNAME",
-  "baseURL": "https://discord.com/api/v9/",
-  "appId": "123456789",
-  "pubKey": "dead0beef0abba0cd0ac0dc"
-}
