@@ -7,11 +7,12 @@
 - Make it use slash commands: https://discord.com/developers/docs/interactions/slash-commands
 
 ## Installation
+
 - Install Node.js https://nodejs.org/en/
 - Clone this repo
 - `npm install`
-- `npm run build`
 - `echo -n TOKEN=\"my_secret_token\" > .env && chmod 600 .env`
+- `npm run build`
 - `npm start` (or `npm start -- --debug` to enable debug messages)
 
 ## Contributing

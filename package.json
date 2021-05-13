@@ -1,5 +1,5 @@
 {
-  "name": "toteutusbotti",
+  "name": "jaska",
   "version": "0.2.0",
   "description": "",
   "main": "build/main.js",
@@ -9,7 +9,11 @@
     "start": "node ./build/main.js",
     "clean": "rm -frv build/*.js"
   },
-  "author": "Saukko",
+  "author": "Saukko666",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saukko666/jaska.git"
+  },
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^15.0.2",
