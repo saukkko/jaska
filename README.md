@@ -2,9 +2,10 @@
 
 ## TODO:
 
-- ~~Give the bot a name!~~
+- create small CLI
 - This readme.
-- Make it use slash commands: https://discord.com/developers/docs/interactions/slash-commands
+- ~~Give the bot a name!~~
+- ~~Make it use slash commands: https://discord.com/developers/docs/interactions/slash-commands~~
 
 ## Installation
 
@@ -21,5 +22,6 @@ xxx
 
 ## Changelog
 
+- 0.3.0: upgraded libs, major refactorings
 - 0.2.0: xxx
 - 0.1.0: Initial version.

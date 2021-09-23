@@ -10,7 +10,10 @@ export class Bot {
   private client: Discord.Client;
 
   constructor(token: string, options?: BotOptions) {
-    this.client = new Discord.Client();
+    this.client = new Discord.Client({
+      intents: 3136,
+      http: { version: 9 },
+    });
     this.token = token || "";
     if (options?.debug) {
       this.debug();
@@ -32,14 +35,18 @@ export class Bot {
   private waitForReady(): void {
     this.client.on("ready", () => {
       console.log("*** Bot ready");
-      this.initCommands();
+      this.listenCommands();
     });
   }
 
-  private initCommands(): void {
-    this.client.on("message", (msg) => {
-      const cmds = new Commands();
-      cmds.init(msg);
+  private listenCommands(): void {
+    this.client.on("interaction", (interaction) => {
+      if (!interaction.isCommand()) {
+        return;
+      }
+      if (interaction.commandName === "zoom") {
+        Commands.getZoomLinkByRealizationCode(interaction);
+      }
     });
   }
 }
